@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "br.com.zupacademy.carro";
+option java_outer_classname = "GrpcCarro";
+option objc_class_prefix = "HLW";
+
+package br.com.zupacademy.carro;
+
+message CarroRequest {
+  string modelo = 1;
+  string placa = 2;
+}
+
+message CarroResponse {
+  int64 id = 1;
+}
+
+service GrpcCarroService {
+  rpc adiciona(CarroRequest) returns (CarroResponse) {}
+}
