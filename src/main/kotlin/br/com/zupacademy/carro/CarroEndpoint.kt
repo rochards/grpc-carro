@@ -22,6 +22,9 @@ class CarroEndpoint(private val carroRepository: CarroRepository) : GrpcCarroSer
 
         val carro = Carro(request.modelo, request.placa)
         try {
+            /* note que não temos uma anotação @Valid ou @Validated, mesmo assim as validações ocorrem.  Isso
+            acontece pq o Hibernate faz essas validações antes de salvar os dados no banco, lançando assim as
+            exceções. */
             carroRepository.save(carro)
         } catch (e: ConstraintViolationException) {
             println(e.message)
